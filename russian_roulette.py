@@ -52,7 +52,7 @@ if __name__ == '__main__':
         sleep(0.4)
         print("Well better luck next time- ",end=" ")
         sleep(0.3)
-        print("Oh wait there won't be a next time...",end=" ")
+        print("Oh wait there won't be a next time...")
         sleep(1)
         #remove line below and the if statement below that, and replace shot(confirmed) with shot(False)
         #if you want to turn safety off (make it actually malicious)
